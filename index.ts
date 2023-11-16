@@ -7,11 +7,13 @@ const pokemonSchema = Schema.struct({
     weight: Schema.number,
 });
 
+type Pokemon = Schema.Schema.To<typeof pokemonSchema>;
+
 //type for response
-type Pokemon = {
-    name :string,
-    weight:number
-}
+// type Pokemon = {
+//     name :string,
+//     weight:number
+// }
 
 //Error Handling///
 class FetchError {
