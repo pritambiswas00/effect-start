@@ -17,10 +17,11 @@ const programWithTimer = pipe(
            read.pipe(
                 Effect.tap((x)=>Effect.log(x)),
                 Effect.tap((x)=>Effect.log(`${performance.now() - startTime} ms`))
-           )),
-  ).pipe(
-     Effect.catchAll((x)=> Effect.log(`Error Occured ${x._tag}`))
-  );
+           )
+           ),
+  )
+  .pipe(
+     Effect.catchTag("ReadFileError", (error)=>Effect.log(error)))
   
   Effect.runPromise(programWithTimer);
 
